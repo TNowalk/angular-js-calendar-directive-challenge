@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Calendar</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <form class="navbar-form navbar-left" role="search">
+        <button type="button" ng-click="setToday()" class="btn btn-default">Today</button>
+        <div class="form-group">
+          <select ng-model="targetDate.month" class="form-control">
+            <option value="" disabled>Select a month</option>
+            <option
+              ng-repeat="month in months"
+              value="{{$index}}"
+              ng-selected="$index == targetDate.month">{{month}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select ng-model="targetDate.year" class="form-control">
+            <option value="" disabled>Select a year</option>
+            <option
+              ng-repeat="year in years"
+              value="{{year}}"
+              ng-selected="year  == targetDate.year">{{year}}</option>
+          </select>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</nav>
+
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th ng-repeat="dow in daysOfWeek" class="text-center">{{dow}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="week in weeks">
+      <td
+        ng-repeat="day in week"
+        class="date"
+        ng-class="{bookend: day.month != targetDate.month, weekend: !day.weekday, info: day.date.toDateString() === today.toDateString()}">
+        {{day.day}}
+      </td>
+    </tr>
+  </tbody>
+</table>

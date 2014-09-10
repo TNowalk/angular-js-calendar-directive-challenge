@@ -1,1 +1,14 @@
 /* your css code goes here */
+
+.date {
+  height: 120px;
+  width: 14%;
+}
+
+.bookend {
+  background-color: #F0F0F0 !important;
+}
+
+.weekend {
+  background-color: #FAFAFA;
+}
